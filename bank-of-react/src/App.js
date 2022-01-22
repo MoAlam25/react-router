@@ -23,7 +23,7 @@ export default function App() {
   const mockLogin = (loginInfo) => {
     const newUser = { ...currentUser }
     console.log("In app.js",loginInfo)
-    newUser.username = loginInfo.user.username
+    newUser.username = loginInfo.username
     setCurrentUser(newUser)
   }
 
@@ -39,7 +39,7 @@ export default function App() {
           </Routes>
         </Router>
       </nav>
-      <button onClick={() => setBalance(balance + 1)}>Increment Balance</button>
+      {/* <button onClick={() => setBalance(balance + 1)}>Increment Balance</button> */}
     </div>
   )
 

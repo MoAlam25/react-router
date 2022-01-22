@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div>
-      <nav className="nav">
+      <nav className="app--nav">
         <Router>
           {/* we will wrap our code in a <Routes> component to make sure we only show the results of one route at a time */}
           <Routes className="routes">

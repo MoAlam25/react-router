@@ -1,14 +1,17 @@
+import '../Styles/Login.css';
 import React, { Component, useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router';
 
 export default function Login(props) {
+    let navigate = useNavigate();
+
     const [user, setUser] = useState(
         {
             username: "",
             password: ""
         }
     )
-    const [redirect, setRedirect] = useState(false)
 
     const handleChange = (event) => {
         const updatedUser = { ...user }
@@ -21,28 +24,25 @@ export default function Login(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(event)
+        // setUser({ user: updatedUser })
         props.mockLogin(user)
-        setRedirect({redirect: true})
-        console.log(redirect)
-    }
-
-    if (redirect) {
-        return (<Navigate to="/userProfile" />)
+        // console.log(user)
+        navigate('/userProfile')
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label for="username"> User Name </label>
-                    <input type="text" name="username" onChange={handleChange} value={user.username}/>
+                    <label htmlFor="username" > User Name </label>
+                    <input type="text" name="username" onChange={handleChange}/>
                 </div>
                 <div>
-                    <label for="password"> Password </label>
-                    {/* onChange={handleChange} */}
-                    <input type="password" name="password" /> 
+                    <label htmlFor="password"> Password </label>
+                    <input type="password" name="password" />
                 </div>
-                <button> Log In </button>
+                <button type="submit"> Log In </button>
             </form>
         </div>
     )

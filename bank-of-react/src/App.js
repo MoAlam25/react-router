@@ -1,4 +1,4 @@
-import './App.css';
+import './Styles/App.css';
 import React, { Component, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
@@ -22,20 +22,23 @@ export default function App() {
 
   const mockLogin = (loginInfo) => {
     const newUser = { ...currentUser }
-    newUser.username = loginInfo.username
+    console.log("In app.js",loginInfo)
+    newUser.username = loginInfo.user.username
     setCurrentUser(newUser)
   }
 
   return (
     <div>
-      <Router>
-        {/* we will wrap our code in a <Routes> component to make sure we only show the results of one route at a time */}
-        <Routes>
-          <Route exact path="/" element={<Home accountBalance={balance} />} />
-          <Route exact path="/userProfile" element={<UserProfile username={currentUser.username} memberSince={currentUser.memberSince} />} />
-          <Route exact path="/login" element={<Login user={currentUser} mockLogin={mockLogin} />} />
-        </Routes>
-      </Router>
+      <nav className="nav">
+        <Router>
+          {/* we will wrap our code in a <Routes> component to make sure we only show the results of one route at a time */}
+          <Routes className="routes">
+            <Route exact path="/" element={<Home accountBalance={balance} />} />
+            <Route exact path="/userProfile" element={<UserProfile username={currentUser.username} memberSince={currentUser.memberSince} />} />
+            <Route exact path="/login" element={<Login user={currentUser} mockLogin={mockLogin} />} />
+          </Routes>
+        </Router>
+      </nav>
       <button onClick={() => setBalance(balance + 1)}>Increment Balance</button>
     </div>
   )

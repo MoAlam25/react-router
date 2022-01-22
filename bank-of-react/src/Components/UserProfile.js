@@ -1,3 +1,4 @@
+import '../Styles/UserProfile.css';
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 

@@ -11,6 +11,8 @@ export default function Home(props) {
 
             {/* Link component takes a very simple prop to= that tells us where we want to redirect */}
             <Link to="/userProfile">User Profile</Link>
+            <br />
+            <Link to="/login">Login</Link>
 
             <AccountBalance accountBalance={props.accountBalance} />
         </div>

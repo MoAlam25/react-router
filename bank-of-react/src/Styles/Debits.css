@@ -1,0 +1,60 @@
+td {
+    text-align: center;
+    padding-right: 15px;
+    height: 50px;
+    width: 300px;
+    letter-spacing: .12em;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr {
+    padding-bottom: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 15px;
+    border: 3px solid black;
+    border-collapse: collapse;
+    background-color: #205397;
+    letter-spacing: .12em;
+    font-size: 18px;
+    color: white;
+}
+
+table {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid black;
+    border-collapse: collapse;
+}
+
+.debit-form {
+    width: fit-content;
+    border: 1px solid black;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 25px;
+}
+
+form>button {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #04AA6D;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+header {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}

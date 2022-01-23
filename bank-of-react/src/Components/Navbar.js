@@ -1,9 +1,9 @@
-import '../Styles/App.css';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import AccountBalance from './AccountBalance';
-import { logDOM } from '@testing-library/react';
-import logo from '../Images/bank-of-react-logo.png';
+import '../Styles/Navbar.css'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import AccountBalance from './AccountBalance'
+import { logDOM } from '@testing-library/react'
+import logo from '../Images/bank-of-react-logo.png'
 
 export default function Navar() {
     return (
@@ -16,6 +16,8 @@ export default function Navar() {
             <Link to="/" className="home--page">Home</Link>
             <Link to="/userProfile" className="home--userprofile">User Profile</Link>
             <Link to="/login" className="home--login">Login</Link>
+            <Link to="/credits" className="home--credits">Credits</Link>
+            <Link to="/debits" className="home--debits">Debits</Link>
         </div>
     )
 }

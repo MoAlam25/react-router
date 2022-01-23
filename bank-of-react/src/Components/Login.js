@@ -1,8 +1,8 @@
-import '../Styles/Login.css';
+import '../Styles/Login.css'
 import React, { Component, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useNavigate } from 'react-router';
-import Navbar from './Navbar';
+import { useNavigate } from 'react-router'
+import Navbar from './Navbar'
 
 export default function Login(props) {
     let navigate = useNavigate();

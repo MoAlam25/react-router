@@ -1,9 +1,11 @@
-import './Styles/App.css';
-import React, { Component, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Components/Home';
-import UserProfile from './Components/UserProfile';
+import './Styles/App.css'
+import React, { Component, useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './Components/Home'
+import UserProfile from './Components/UserProfile'
 import Login from './Components/Login'
+import Debits from './Components/Debits'
+import Credits from './Components/Credits'
 
 export default function App() {
   const [route, setRoute] = useState(null)
@@ -36,6 +38,8 @@ export default function App() {
             <Route exact path="/" element={<Home accountBalance={balance} />} />
             <Route exact path="/userProfile" element={<UserProfile username={currentUser.username} memberSince={currentUser.memberSince} />} />
             <Route exact path="/login" element={<Login user={currentUser} mockLogin={mockLogin} />} />
+            <Route exact path="/debits" element={<Debits />} />
+            <Route exact path="/credits" element={<Credits />} />
           </Routes>
         </Router>
       </nav>

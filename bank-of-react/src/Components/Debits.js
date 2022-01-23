@@ -4,57 +4,33 @@ import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import '../Styles/Debits.css'
 
-export default function Debits() {
-    const [debit, setDebit] = useState(null)
+export default function Debits(props) {
 
-    let apiURL = ("https://moj-api.herokuapp.com/debits")
-
-    useEffect(() => {
-        const fetchDebit = async () => {
-            try {
-                const response = await axios.get(apiURL)
-                setDebit(response.data)
-                console.log(response.data)
-            } catch (e) {
-                alert("ERROR")
-                console.log(e)
-            }
-        }
-        fetchDebit()
-    }, [debit])
-
-    // const handleChange = (name) => {
-    //     const enteredCityName = name.target.value
-    //     setName(enteredCityName)
-    // }
+    const [updatedDebit, setUpdatedDebit] = useState({
+        description: '',
+        amount: 0,
+        date: new Date().toLocaleString()
+    })
 
     const handleChange = (event) => {
-        const Date = new Date().toLocaleString()
-        const inputField = event.target[0].name;
-        const inputValue = event.target[1].value;
+        const inputField = event.target.name
+        const inputValue = event.target.value
+        setUpdatedDebit(prevUpdatedDebit => ({ ...updatedDebit, [inputField]: inputValue }))
     }
 
     const handleSubmit = (event) => {
-        
         event.preventDefault();
-        setDebit(
-            ...debit, 
-            {
-                description: event.target.value,
-                amount: event.target.value,
-                date: Date
-            }
+        props.updateDebit(previousDebit => ([
+            ...previousDebit,
+            updatedDebit
+        ])
         )
     }
 
     return (
         <div>
             <Navbar />
-            {/* <div className="column-names">
-                <h1>Description</h1>
-                <h1>Amount</h1>
-                <h1>Date</h1>
-            </div> */}
+            <header>Debits</header>
             <table>
                 <tbody>
                     <tr>
@@ -62,7 +38,7 @@ export default function Debits() {
                         <th>Amount</th>
                         <th>Date</th>
                     </tr>
-                    {debit && debit.map((debitEl) => {
+                    {props.debit && props.debit.map(debitEl => {
                         return (
                             <tr key={debitEl.id} className="debits">
                                 <td>{debitEl.description}</td>
@@ -75,17 +51,22 @@ export default function Debits() {
                 </tbody>
             </table>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='debit-form'>
                 <div>
-                    <label htmlFor="description"> Description </label>
-                    <input placeholder='Enter Description' onChange={handleChange} name="description" required/>
+                    <label htmlFor="description">Description</label>
+                    <input placeholder='Enter Description' onChange={handleChange} name="description" required />
                 </div>
                 <div>
-                    <label htmlFor="amount"> Amount </label>
-                    <input placeholder='Enter Amount' onChange={handleChange} name="amount"required/>
+                    <label htmlFor="amount">Amount</label>
+                    <input placeholder='Enter Amount' onChange={handleChange} name="amount" required />
                 </div>
                 <button type="submit">Submit</button>
             </form>
+
+            <div>
+                <h2>Account Balance:</h2>
+                <p>{props.balance}</p>
+            </div>
         </div>
     )
 }

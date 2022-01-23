@@ -31,3 +31,30 @@ table {
     border: 5px solid black;
     border-collapse: collapse;
 }
+
+.debit-form {
+    width: fit-content;
+    border: 1px solid black;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 25px;
+}
+
+form>button {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #04AA6D;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+header {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}

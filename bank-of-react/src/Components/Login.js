@@ -25,17 +25,14 @@ export default function Login(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(event)
-        // setUser({ user: updatedUser })
         props.mockLogin(user)
-        // console.log(user)
         navigate('/userProfile')
     }
 
     return (
         <div>
           <Navbar/>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='login'>
                 <div>
                     <label htmlFor="username" > User Name </label>
                     <input type="text" name="username" onChange={handleChange}/>

@@ -5,7 +5,7 @@ import AccountBalance from './AccountBalance'
 import { logDOM } from '@testing-library/react'
 import logo from '../Images/bank-of-react-logo.png'
 
-export default function Navar() {
+export default function Navbar() {
     return (
         <div className="home--nav">
             {/* <img src="https://www.pngitem.com/pimgs/m/153-1531279_bank-building-icon-generic-monochrome-free-bank-logo.png" alt="bank" className="logo-img" /> */}

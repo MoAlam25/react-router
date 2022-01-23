@@ -1,59 +1,35 @@
 import React from 'react'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
+import '../Styles/Credits.css'
 
-export default function Credits() {
-    const [credit, setCredit] = useState(null)
-
-    let apiURL = ("https://moj-api.herokuapp.com/credits")
-
-    useEffect(() => {
-        const fetchCredit = async () => {
-            try {
-                const response = await axios.get(apiURL)
-                setCredit(response.data)
-                console.log(response.data)
-            } catch (e) {
-                alert("ERROR")
-                console.log(e)
-            }
-        }
-        fetchCredit()
-    }, [credit])
-
-    // const handleChange = (name) => {
-    //     const enteredCityName = name.target.value
-    //     setName(enteredCityName)
-    // }
+export default function Credits(props) {
+    //helps to add new credits specified through the form
+    const [updatedCredit, setUpdatedCredit] = useState({
+        description: '',
+        amount: 0,
+        date: new Date().toLocaleString()
+    })
 
     const handleChange = (event) => {
-        const Date = new Date().toLocaleString()
-        const inputField = event.target[0].name;
-        const inputValue = event.target[1].value;
+        const inputField = event.target.name
+        const inputValue = event.target.value
+        setUpdatedCredit(prevUpdatedCredit => ({ ...updatedCredit, [inputField]: inputValue }))
     }
 
     const handleSubmit = (event) => {
-        
         event.preventDefault();
-        setCredit(
-            ...credit, 
-            {
-                description: event.target.value,
-                amount: event.target.value,
-                date: Date
-            }
+        props.updateCredit(previousCredit => ([
+            ...previousCredit,
+            updatedCredit
+        ])
         )
     }
 
     return (
         <div>
             <Navbar />
-            {/* <div className="column-names">
-                <h1>Description</h1>
-                <h1>Amount</h1>
-                <h1>Date</h1>
-            </div> */}
+            <header>Credits</header>
             <table>
                 <tbody>
                     <tr>
@@ -61,7 +37,7 @@ export default function Credits() {
                         <th>Amount</th>
                         <th>Date</th>
                     </tr>
-                    {credit && credit.map((creditEl) => {
+                    {props.credit && props.credit.map((creditEl) => {
                         return (
                             <tr key={creditEl.id} className="credits">
                                 <td>{creditEl.description}</td>
@@ -69,22 +45,26 @@ export default function Credits() {
                                 <td>{creditEl.date}</td>
                             </tr>
                         )
-                    }
-                    )}
+                    })}
                 </tbody>
             </table>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='credit-form'>
                 <div>
-                    <label htmlFor="description"> Description </label>
-                    <input placeholder='Enter Description' onChange={handleChange} name="description" required/>
+                    <label htmlFor="description">Description</label>
+                    <input placeholder='Enter Description' onChange={handleChange} name="description" required />
                 </div>
                 <div>
-                    <label htmlFor="amount"> Amount </label>
-                    <input placeholder='Enter Amount' onChange={handleChange} name="amount"required/>
+                    <label htmlFor="amount">Amount</label>
+                    <input placeholder='Enter Amount' onChange={handleChange} name="amount" required />
                 </div>
                 <button type="submit">Submit</button>
             </form>
+
+            <div>
+                <h2>Account Balance:</h2>
+                <p>{props.balance}</p>
+            </div>
         </div>
     )
 }
